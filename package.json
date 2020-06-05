@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Pact JS E2E Example",
   "scripts": {
-    "pacts": "mocha --recursive \"tests/*.pact.js\" --timeout 10000"
+    "pacts": "mocha --recursive \"tests/*.pact.js\" --timeout 10000",
+    "publish": "node tests/publish.js"
   },
   "author": "prescottlewis707@gmail.com",
   "license": "MIT",
