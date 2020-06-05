@@ -1,0 +1,17 @@
+{
+  "name": "consumer",
+  "version": "1.0.0",
+  "description": "Pact JS E2E Example",
+  "scripts": {
+    "pacts": "mocha --recursive \"tests/*.pact.js\" --timeout 10000"
+  },
+  "author": "prescottlewis707@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@pact-foundation/pact": "9.11.0",
+    "axios": "0.19.2",
+    "chai": "4.2.0",
+    "chai-as-promised": "7.1.1",
+    "mocha": "7.2.0"
+  }
+}
