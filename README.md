@@ -1,6 +1,4 @@
-# Chapter 1 - Consumer Test
-
-Consumer Driven Contract Testing with pact-js
+# Pact Online Course
 
 ## Running the tests
 
