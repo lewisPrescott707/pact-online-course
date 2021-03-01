@@ -6,7 +6,7 @@
     "pacts": "mocha --recursive \"tests/*.pact.js\" --timeout 10000",
     "publish": "node tests/publish.js"
   },
-  "author": "prescottlewis707@gmail.com",
+  "author": "prescottlewis707",
   "license": "MIT",
   "devDependencies": {
     "@pact-foundation/pact": "9.11.0",
