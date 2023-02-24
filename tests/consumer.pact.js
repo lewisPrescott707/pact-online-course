@@ -6,6 +6,7 @@ const expect = chai.expect
 chai.use(chaiAsPromised)
 const { string } = Matchers
 const get = require('../src/get')
+const getNull = require('../src/get-invalid')
 
 describe('Consumer Test', () => {
     const provider = new Pact({
@@ -17,27 +18,34 @@ describe('Consumer Test', () => {
         logLevel: "INFO"
     });
 
-    before(() => provider.setup()
-    .then(() => provider.addInteraction({
-        state: "user token",
-        uponReceiving: "GET user token",
-        withRequest: {
-            method: "GET",
-            path: "/token/1234",
-            headers: { Accept: "application/json, text/plain, */*" }
-        },
-        willRespondWith: {
-            headers: { "Content-Type": "application/json" },
-            status: 200,
-            body: { "token": string("bearer") }
-        }
-    })))
+    before(() => provider.setup())
 
-    it('OK response', () => {
-        get()
-        .then((response) => {
-            expect(response.statusText).to.be.equal('OK')
+    describe('valid token', () => {
+        before(done => { provider.addInteraction({
+            state: "user token",
+            uponReceiving: "GET user token",
+            withRequest: {
+                method: "GET",
+                path: "/token/1234",
+                headers: { Accept: "application/json, text/plain, */*" }
+            },
+            willRespondWith: {
+                headers: { "Content-Type": "application/json" },
+                status: 200,
+                body: { "token": string("bearer") }
+            }
+            }).then(() => {
+                done()
+            })
         })
+
+        it('OK response', async () => {
+            await get()
+            .then((response) => {
+                expect(response.status).to.be.equal(200)
+            })
+        })
+
     })
 
     afterEach(() => provider.verify())
